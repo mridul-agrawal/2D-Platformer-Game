@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6430535177415803538
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,3 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 6430535177415803537}
+  movementSpeed: 7.5
+  jumpForce: 5
+  isTouchingGround: 0
