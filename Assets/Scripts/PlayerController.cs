@@ -69,7 +69,12 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayerVertically()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround && !playerAnimator.GetBool("Crouch"))
+        {
+            // Jump
+            playerAnimator.SetTrigger("Jump");
+            rigidbodyPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        }
     }
 
 
@@ -88,12 +93,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("Crouch", false);
             GetComponent<BoxCollider2D>().offset = standingColliderOffset;
             GetComponent<BoxCollider2D>().size = standingColliderSize;
-        }  else if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
-        {
-            // Jump
-            playerAnimator.SetTrigger("Jump");
-            rigidbodyPlayer.AddForce(new Vector2(0,jumpForce), ForceMode2D.Impulse);
-        }
+        }   
     }
 
     private void OnCollisionStay2D(Collision2D other)
