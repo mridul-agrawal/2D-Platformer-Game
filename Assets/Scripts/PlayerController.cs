@@ -37,19 +37,18 @@ public class PlayerController : MonoBehaviour
 
     public void PlayHorizontalAnimation(float horizontal)
     {
+        Vector3 scale = transform.localScale;
         if (horizontal < 0)
         {
-            Vector3 scale = transform.localScale;
             scale.x = -1 * Mathf.Abs(scale.x);
-            transform.localScale = scale;
             horizontal = Mathf.Abs(horizontal);
         }
         else if (horizontal > 0)
         {
-            Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+        transform.localScale = scale;
         playerAnimator.SetFloat("speed", horizontal);
     }
 

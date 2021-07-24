@@ -14,7 +14,7 @@ public class PlayerDeathFall : MonoBehaviour
         {
             mainCamera.transform.parent = null;
             deathUIPanel.gameObject.SetActive(true);
-            GetComponent<PlayerController>().gameObject.SetActive(false);
+            other.GetComponent<PlayerController>().gameObject.SetActive(false);
         }
     }
 }
