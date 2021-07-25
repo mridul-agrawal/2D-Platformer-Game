@@ -37,19 +37,18 @@ public class PlayerController : MonoBehaviour
 
     public void PlayHorizontalAnimation(float horizontal)
     {
+        Vector3 scale = transform.localScale;
         if (horizontal < 0)
         {
-            Vector3 scale = transform.localScale;
             scale.x = -1 * Mathf.Abs(scale.x);
-            transform.localScale = scale;
             horizontal = Mathf.Abs(horizontal);
         }
         else if (horizontal > 0)
         {
-            Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
         }
+        transform.localScale = scale;
         playerAnimator.SetFloat("speed", horizontal);
     }
 
@@ -69,7 +68,12 @@ public class PlayerController : MonoBehaviour
 
     public void MovePlayerVertically()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround && !playerAnimator.GetBool("Crouch"))
+        {
+            // Jump
+            playerAnimator.SetTrigger("Jump");
+            rigidbodyPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+        }
     }
 
 
@@ -88,12 +92,7 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("Crouch", false);
             GetComponent<BoxCollider2D>().offset = standingColliderOffset;
             GetComponent<BoxCollider2D>().size = standingColliderSize;
-        }  else if (Input.GetKeyDown(KeyCode.Space) && isTouchingGround)
-        {
-            // Jump
-            playerAnimator.SetTrigger("Jump");
-            rigidbodyPlayer.AddForce(new Vector2(0,jumpForce), ForceMode2D.Impulse);
-        }
+        }   
     }
 
     private void OnCollisionStay2D(Collision2D other)
