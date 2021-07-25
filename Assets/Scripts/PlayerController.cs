@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public float jumpForce;
     public bool isTouchingGround;
+    public ScoreController scoreController;
+
 
     private Rigidbody2D rigidbodyPlayer;
 
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 standingColliderSize = new Vector2(0.45f, 2.05f);
     private Vector2 crouchingColliderOffset = new Vector2(-0.15f, 0.6f);
     private Vector2 crouchingColliderSize = new Vector2(0.75f,1.3f);
+
 
     private void Start()
     {
@@ -110,5 +113,11 @@ public class PlayerController : MonoBehaviour
             isTouchingGround = false;
         }
     }
+
+    public void GetKey()
+    {
+        scoreController.AddScore(10);
+    }
+
 
 }
