@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -20,9 +21,15 @@ public class EnemyController : MonoBehaviour
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
             movingRight = movingRight * -1;
         }
-  
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.GetComponent<PlayerController>() != null)
+        {
+            collision.transform.GetComponent<PlayerController>().DecreaseHealth();
+            //Reset player position.
+        }
+    }
 
 }
