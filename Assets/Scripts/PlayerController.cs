@@ -164,21 +164,8 @@ public class PlayerController : MonoBehaviour
     {
         for(int i=0; i<hearts.Length; i++)
         {
-            if (i<health)
-            {
-                hearts[i].sprite = fullHeart;
-            } else
-            {
-                hearts[i].sprite = emptyHeart;
-            }
-
-            if(i<maxHealth)
-            {
-                hearts[i].enabled = true;
-            } else
-            {
-                hearts[i].enabled = false;
-            }
+            hearts[i].sprite = i < health ? fullHeart : emptyHeart;
+            hearts[i].enabled = i < maxHealth ? true : false;
         }
     }
 
