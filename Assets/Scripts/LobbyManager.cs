@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LobbyManager : MonoBehaviour
 {
+    public GameObject LevelSelector;
+
     public void PlayButton()
     {
-        SceneManager.LoadScene(1);
+        LevelSelector.SetActive(true);
     }
 
     public void QuitButton()
