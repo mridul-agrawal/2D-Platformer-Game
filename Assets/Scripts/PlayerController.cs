@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,21 +10,39 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed;
     public float jumpForce;
     public bool isTouchingGround;
+    public ScoreController scoreController;
+    public int health = 3;
+    public int maxHealth = 3;
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+    private bool isdead = false;
+
 
     private Rigidbody2D rigidbodyPlayer;
+    public Camera mainCamera;
+    public CanvasRenderer deathUIPanel;
 
     private Vector2 standingColliderOffset = new Vector2(0f, 0.98f);
     private Vector2 standingColliderSize = new Vector2(0.45f, 2.05f);
     private Vector2 crouchingColliderOffset = new Vector2(-0.15f, 0.6f);
     private Vector2 crouchingColliderSize = new Vector2(0.75f,1.3f);
 
+    public Transform startPosition;
+
     private void Start()
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
+        health = maxHealth;
     }
 
     private void Update()
     {
+        HandleHealthUI();
+        if (isdead)
+        {
+            return;
+        }
         HandleHorizontalInput();
         HandleVerticalInput();
         HandleOtherInput();
@@ -59,7 +79,6 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
     }
 
-
     public void HandleVerticalInput()
     {
         float vertical = Input.GetAxisRaw("Vertical");
@@ -75,8 +94,6 @@ public class PlayerController : MonoBehaviour
             rigidbodyPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
-
-
 
     public void HandleOtherInput()
     {
@@ -109,6 +126,52 @@ public class PlayerController : MonoBehaviour
         {
             isTouchingGround = false;
         }
+    }
+
+    public void GetKey()
+    {
+        scoreController.AddScore(10);
+    }
+
+    public void DecreaseHealth()
+    {
+        health--;
+        if(health <= 0)
+        {
+            PlayDeathAnimation();
+            PlayerDeath();
+            isdead = true;
+        } else
+        {
+            transform.position = startPosition.position;
+        }
+    }
+
+    public void PlayerDeath()
+    {
+        mainCamera.transform.parent = null;
+        deathUIPanel.gameObject.SetActive(true);
+        rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
+    }
+
+    public void PlayDeathAnimation()
+    {
+        playerAnimator.SetTrigger("Die");
+        rigidbodyPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+    }
+
+    public void HandleHealthUI()
+    {
+        for(int i=0; i<hearts.Length; i++)
+        {
+            hearts[i].sprite = i < health ? fullHeart : emptyHeart;
+            hearts[i].enabled = i < maxHealth ? true : false;
+        }
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
