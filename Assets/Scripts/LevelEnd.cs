@@ -9,6 +9,7 @@ public class LevelEnd : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
+            LevelManager.Instance.SetCurrentLevelComplete();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
