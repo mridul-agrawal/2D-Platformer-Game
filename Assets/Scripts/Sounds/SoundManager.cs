@@ -26,13 +26,26 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(Sounds soundType)
+    public void PlaySoundEffects(Sounds soundType)
     {
         AudioClip clip = GetSoundClip(soundType);
         if(clip!=null)
         {
             audioEffects.PlayOneShot(clip);
         } else
+        {
+            Debug.LogError("No Audio Clip got selected");
+        }
+    }
+
+    public void PlayBackgroundMusic(Sounds soundType)
+    {
+        AudioClip clip = GetSoundClip(soundType);
+        if (clip != null)
+        {
+            audioMusic.PlayOneShot(clip);
+        }
+        else
         {
             Debug.LogError("No Audio Clip got selected");
         }
@@ -64,7 +77,7 @@ public class SoundType
 
 public enum Sounds
 {
-    BackgroundMusic,
+    BackgroundMusic1,
     ButtonClick1,
     ButtonClick2,
     ButtonLocked,
@@ -73,6 +86,7 @@ public enum Sounds
     PlayerLand,
     PlayerDeath,
     PlayerDamage,
+    KeySounds,
     EnemyDeath,
     GameOver,
     NewLevel,

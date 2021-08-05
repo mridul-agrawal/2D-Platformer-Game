@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
         health = maxHealth;
+        SoundManager.Instance.PlayBackgroundMusic(Sounds.BackgroundMusic1);
     }
 
     private void Update()
@@ -130,6 +131,7 @@ public class PlayerController : MonoBehaviour
     public void GetKey()
     {
         scoreController.AddScore(10);
+        SoundManager.Instance.PlaySoundEffects(Sounds.KeySounds);
     }
 
     public void DecreaseHealth()
@@ -142,7 +144,7 @@ public class PlayerController : MonoBehaviour
             isdead = true;
         } else
         {
-            SoundManager.Instance.PlaySound(Sounds.PlayerDamage);
+            SoundManager.Instance.PlaySoundEffects(Sounds.PlayerDamage);
             transform.position = startPosition.position;
         }
     }
@@ -183,19 +185,19 @@ public class PlayerController : MonoBehaviour
 
     public void PlayMovementSound()
     {
-        if(isTouchingGround) SoundManager.Instance.PlaySound(Sounds.PlayerMove);
+        if(isTouchingGround) SoundManager.Instance.PlaySoundEffects(Sounds.PlayerMove);
     }
     public void PlayJumpSound()
     {
-        SoundManager.Instance.PlaySound(Sounds.PlayerJump);
+        SoundManager.Instance.PlaySoundEffects(Sounds.PlayerJump);
     }
     public void PlayLandSound()
     {
-        if (isTouchingGround) SoundManager.Instance.PlaySound(Sounds.PlayerLand);
+        if (isTouchingGround) SoundManager.Instance.PlaySoundEffects(Sounds.PlayerLand);
     }
     public void PlayDeathSound()
     {
-        SoundManager.Instance.PlaySound(Sounds.PlayerDeath);
+        SoundManager.Instance.PlaySoundEffects(Sounds.PlayerDeath);
     }
 }
 

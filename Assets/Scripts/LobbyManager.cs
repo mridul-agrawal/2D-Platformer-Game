@@ -9,7 +9,7 @@ public class LobbyManager : MonoBehaviour
 
     public void PlayButton()
     {
-        SoundManager.Instance.PlaySound(Sounds.ButtonClick2);
+        SoundManager.Instance.PlaySoundEffects(Sounds.ButtonClick2);
         LevelSelector.SetActive(true);
     }
 
