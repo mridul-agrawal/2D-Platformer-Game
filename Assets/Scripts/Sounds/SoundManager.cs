@@ -69,6 +69,8 @@ public enum Sounds
     ButtonClick2,
     ButtonLocked,
     PlayerMove,
+    PlayerJump,
+    PlayerLand,
     PlayerDeath,
     EnemyDeath,
     GameOver,

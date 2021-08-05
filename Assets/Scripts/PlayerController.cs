@@ -184,6 +184,14 @@ public class PlayerController : MonoBehaviour
         if(isTouchingGround) SoundManager.Instance.PlaySound(Sounds.PlayerMove);
     }
 
+    public void PlayJumpSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.PlayerJump);
+    }
+    public void PlayLandSound()
+    {
+        if (isTouchingGround) SoundManager.Instance.PlaySound(Sounds.PlayerLand);
+    }
 
 }
 
