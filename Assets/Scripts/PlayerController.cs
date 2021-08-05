@@ -171,6 +171,11 @@ public class PlayerController : MonoBehaviour
 
     public void RestartLevel()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void MainMenu()
+    {
         SceneManager.LoadScene(0);
     }
 
