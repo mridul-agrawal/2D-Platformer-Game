@@ -72,6 +72,7 @@ public enum Sounds
     PlayerJump,
     PlayerLand,
     PlayerDeath,
+    PlayerDamage,
     EnemyDeath,
     GameOver,
     NewLevel,

@@ -142,6 +142,7 @@ public class PlayerController : MonoBehaviour
             isdead = true;
         } else
         {
+            SoundManager.Instance.PlaySound(Sounds.PlayerDamage);
             transform.position = startPosition.position;
         }
     }
@@ -150,11 +151,12 @@ public class PlayerController : MonoBehaviour
     {
         mainCamera.transform.parent = null;
         deathUIPanel.gameObject.SetActive(true);
-        rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
+        rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void PlayDeathAnimation()
     {
+        if (isdead) return;
         playerAnimator.SetTrigger("Die");
         rigidbodyPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }
@@ -183,7 +185,6 @@ public class PlayerController : MonoBehaviour
     {
         if(isTouchingGround) SoundManager.Instance.PlaySound(Sounds.PlayerMove);
     }
-
     public void PlayJumpSound()
     {
         SoundManager.Instance.PlaySound(Sounds.PlayerJump);
@@ -192,7 +193,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isTouchingGround) SoundManager.Instance.PlaySound(Sounds.PlayerLand);
     }
-
+    public void PlayDeathSound()
+    {
+        SoundManager.Instance.PlaySound(Sounds.PlayerDeath);
+    }
 }
 
 
