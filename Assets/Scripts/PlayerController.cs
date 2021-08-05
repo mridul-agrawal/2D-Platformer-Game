@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
         else if (horizontal > 0)
         {
             scale.x = Mathf.Abs(scale.x);
-            transform.localScale = scale;
         }
         transform.localScale = scale;
         playerAnimator.SetFloat("speed", horizontal);
@@ -179,4 +178,13 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+
+    public void PlayMovementSound()
+    {
+        if(isTouchingGround) SoundManager.Instance.PlaySound(Sounds.PlayerMove);
+    }
+
+
 }
+
+

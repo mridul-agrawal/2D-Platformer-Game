@@ -48,6 +48,11 @@ public class SoundManager : MonoBehaviour
         return null;
     }
 
+    public void StopSoundEffect()             // Sets the audio clip to null.
+    {
+        audioEffects.clip = null;
+    }
+
 }
 
 [Serializable]
