@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         rigidbodyPlayer = GetComponent<Rigidbody2D>();
         health = maxHealth;
+        SoundManager.Instance.PlayBackgroundMusic(Sounds.BackgroundMusic1);
     }
 
     private void Update()
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
         else if (horizontal > 0)
         {
             scale.x = Mathf.Abs(scale.x);
-            transform.localScale = scale;
         }
         transform.localScale = scale;
         playerAnimator.SetFloat("speed", horizontal);
@@ -97,6 +97,13 @@ public class PlayerController : MonoBehaviour
 
     public void HandleOtherInput()
     {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            playerAnimator.SetTrigger("meleeAttack");
+            SoundManager.Instance.PlaySoundEffects(Sounds.PlayerStaffAttack);
+        }
+
+
         if(Input.GetKey(KeyCode.LeftControl))
         {
             // Crouch
@@ -131,6 +138,7 @@ public class PlayerController : MonoBehaviour
     public void GetKey()
     {
         scoreController.AddScore(10);
+        SoundManager.Instance.PlaySoundEffects(Sounds.KeySounds);
     }
 
     public void DecreaseHealth()
@@ -143,6 +151,7 @@ public class PlayerController : MonoBehaviour
             isdead = true;
         } else
         {
+            SoundManager.Instance.PlaySoundEffects(Sounds.PlayerDamage);
             transform.position = startPosition.position;
         }
     }
@@ -151,11 +160,12 @@ public class PlayerController : MonoBehaviour
     {
         mainCamera.transform.parent = null;
         deathUIPanel.gameObject.SetActive(true);
-        rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezePosition;
+        rigidbodyPlayer.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void PlayDeathAnimation()
     {
+        if (isdead) return;
         playerAnimator.SetTrigger("Die");
         rigidbodyPlayer.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
     }
@@ -179,4 +189,23 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+
+    public void PlayMovementSound()
+    {
+        if(isTouchingGround) SoundManager.Instance.PlaySoundEffects(Sounds.PlayerMove);
+    }
+    public void PlayJumpSound()
+    {
+        SoundManager.Instance.PlaySoundEffects(Sounds.PlayerJump);
+    }
+    public void PlayLandSound()
+    {
+        if (isTouchingGround) SoundManager.Instance.PlaySoundEffects(Sounds.PlayerLand);
+    }
+    public void PlayDeathSound()
+    {
+        SoundManager.Instance.PlaySoundEffects(Sounds.PlayerDeath);
+    }
 }
+
+

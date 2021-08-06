@@ -9,6 +9,7 @@ public class LevelEnd : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
+            SoundManager.Instance.PlaySoundEffects(Sounds.ButtonClick1);
             LevelManager.Instance.SetCurrentLevelComplete();
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
