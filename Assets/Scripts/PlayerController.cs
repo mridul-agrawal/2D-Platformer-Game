@@ -97,6 +97,13 @@ public class PlayerController : MonoBehaviour
 
     public void HandleOtherInput()
     {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            playerAnimator.SetTrigger("meleeAttack");
+            SoundManager.Instance.PlaySoundEffects(Sounds.PlayerStaffAttack);
+        }
+
+
         if(Input.GetKey(KeyCode.LeftControl))
         {
             // Crouch

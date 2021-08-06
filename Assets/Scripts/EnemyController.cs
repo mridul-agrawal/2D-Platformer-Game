@@ -45,6 +45,7 @@ public class EnemyController : MonoBehaviour
         if (collision.transform.GetComponent<PlayerController>() != null)
         {
             enemyAnimator.SetTrigger("attack");
+            SoundManager.Instance.PlaySoundEffects(Sounds.ChomperAttack);
             attacking = true;
         }
     }

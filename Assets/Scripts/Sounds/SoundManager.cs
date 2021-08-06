@@ -86,8 +86,10 @@ public enum Sounds
     PlayerLand,
     PlayerDeath,
     PlayerDamage,
+    PlayerStaffAttack,
     KeySounds,
     EnemyDeath,
+    ChomperAttack,
     GameOver,
     NewLevel,
     LevelComplete
