@@ -42,6 +42,12 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.tag == "Staff")
+        {
+            //trigger Particle Effect.
+            SoundManager.Instance.PlaySoundEffects(Sounds.EnemyDeath);
+            Destroy(gameObject);
+        }
         if (collision.transform.GetComponent<PlayerController>() != null)
         {
             enemyAnimator.SetTrigger("attack");

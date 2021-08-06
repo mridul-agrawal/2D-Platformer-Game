@@ -3889,6 +3889,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6430535177415803538, guid: 44a48012ef9e15b4c8c3354aaf62f294,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 5.2325583
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430535177415803538, guid: 44a48012ef9e15b4c8c3354aaf62f294,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2.5581396
+      objectReference: {fileID: 0}
     - target: {fileID: 6430535177415803542, guid: 44a48012ef9e15b4c8c3354aaf62f294,
         type: 3}
       propertyPath: deathUIPanel
