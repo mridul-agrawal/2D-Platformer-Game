@@ -9,13 +9,22 @@ public class EnemyController : MonoBehaviour
     public int movingRight = 1;
     public GameObject groundDetector;
     public float rayDistance;
+    private Animator enemyAnimator;
+    public bool attacking;
+
+    private void Start()
+    {
+        enemyAnimator = GetComponent<Animator>();
+    }
 
     private void Update()
     {
+        if (attacking) return;
+
         transform.Translate(movingRight * Vector2.right * speed * Time.deltaTime);
 
         RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistance);
-
+    //    Debug.Log(hit.transform.name);
         if(!hit)
         {
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -28,8 +37,21 @@ public class EnemyController : MonoBehaviour
         if(collision.transform.GetComponent<PlayerController>() != null)
         {
             collision.transform.GetComponent<PlayerController>().DecreaseHealth();
-            //Reset player position.
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.GetComponent<PlayerController>() != null)
+        {
+            enemyAnimator.SetTrigger("attack");
+            attacking = true;
+        }
+    }
+
+    public void SetAttacking()
+    {
+        attacking = false;
     }
 
 }

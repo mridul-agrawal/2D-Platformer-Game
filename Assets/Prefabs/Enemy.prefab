@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6826220583324304682}
   - component: {fileID: 6826220583324304683}
   - component: {fileID: 6826220583324304684}
+  - component: {fileID: 2035840165}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -140,7 +141,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.007432461, y: 0.39242804}
+  m_Offset: {x: 0.007432461, y: 0.4082449}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.25}
@@ -151,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9609318, y: 0.8394706}
+  m_Size: {x: 0.9609318, y: 0.8078369}
   m_EdgeRadius: 0
 --- !u!114 &6826220583324304684
 MonoBehaviour:
@@ -169,6 +170,33 @@ MonoBehaviour:
   movingRight: 1
   groundDetector: {fileID: 6826220584004839822}
   rayDistance: 1
+  attacking: 0
+--- !u!61 &2035840165
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6826220583324304678}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.34372663, y: 0.42055684}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.25}
+    oldSize: {x: 3.3333333, y: 2.22}
+    newSize: {x: 3.3333333, y: 2.22}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8577967, y: 1.0021027}
+  m_EdgeRadius: 0
 --- !u!1 &6826220584004839822
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,7 +221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6826220584004839822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.85, y: 0.5, z: 0}
+  m_LocalPosition: {x: 1.36, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6826220583324304680}
