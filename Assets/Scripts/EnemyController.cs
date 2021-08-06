@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public float rayDistance;
     private Animator enemyAnimator;
     public bool attacking;
+    public bool isDead = false;
 
     private void Start()
     {
@@ -20,11 +21,11 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         if (attacking) return;
+        if (isDead) return;
 
         transform.Translate(movingRight * Vector2.right * speed * Time.deltaTime);
 
         RaycastHit2D hit = Physics2D.Raycast(groundDetector.transform.position, Vector2.down, rayDistance);
-    //    Debug.Log(hit.transform.name);
         if(!hit)
         {
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -44,9 +45,11 @@ public class EnemyController : MonoBehaviour
     {
         if(collision.gameObject.tag == "Staff")
         {
-            //trigger Particle Effect.
             SoundManager.Instance.PlaySoundEffects(Sounds.EnemyDeath);
-            Destroy(gameObject);
+            GetComponentInChildren<ParticleSystem>().Play();
+            isDead = true;
+            enemyAnimator.SetTrigger("die");
+            Destroy(gameObject,1);
         }
         if (collision.transform.GetComponent<PlayerController>() != null)
         {
